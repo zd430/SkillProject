@@ -1,0 +1,70 @@
+
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 60px 0px;
+    text-align: center;
+}
+li {
+    color: white;
+    height: 80px;
+    line-height: 80px;
+}
+.li1 {
+    background-color: #ffc562;
+  }
+  .li2 {
+      background-color: #a0c3f7;
+    }
+  .li3 {
+      background-color: #ff8db3;
+    }
+    .li4 {
+        background-color: #88e7ce;
+    }
+    
+    /* 縦に並んだリストを横並びにする。 */
+    /* flex-listクラスに対して、リストが横並びになるようにdisplayを指定 */
+    .flex-list {
+        display: flex;
+    }
+
+    /* 横並びにしたリストを画面幅いっぱいにする。 */
+    /* flex-listクラスの<li>タグに対して、画面幅いっぱいになるようにflexプロパティを指定 */
+    .flex-list li {
+        flex: auto;
+    }
+    
+    /* タブレット向けレイアウト */
+    /* メディアクエリを使って、タブレット用レイアウトの場合にリストを2列にしてみる。 */
+
+    /* タブレット表示 (画面幅が1000px以下) 用のメディアクエリを作成する */
+    @media (max-width: 1000px) {
+        /* メディアクエリ内でflex-listクラスに対して、折り返すようにするために、flex-wrapを指定 */
+        .flex-list {
+            flex-wrap: wrap;
+        }
+        /* メディアクエリ内でflex-listクラスの<li>タグに対して、折り返した時に2列となるように、widthを50％に指定 */
+        .flex-list li {
+            width: 50%;
+        }
+    }
+    
+    /* スマホ向けレイアウト */
+    /* メディアクエリを使って、スマートフォン用レイアウトの場合にリストを縦1列にしてみる。 */
+
+  /* ブレイクポイントが670px以下の時のメディアクエリを設定する */
+  @media (max-width: 670px) {
+    /* .flex-listクラスに対して、縦１列にするためにflex-directionを指定する */
+    .flex-list {
+      flex-direction: column;
+    }
+    
+    /* 縦１列に並んだリストが左寄せになっているので、中央寄せにする。 */
+    /* .flex-list liタグに対して、中央寄せをするためにmarginを0 autoに指定する */
+    .flex-list li {
+      margin: 0 auto;
+    }
+    
+  }
+  

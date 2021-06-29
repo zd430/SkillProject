@@ -1,0 +1,11 @@
+addClass・removeClassについて。
+hover時にtext-activeというclassがあれば、レッスンの説明文を表示させるようにする。
+そのためにはまず
+１．cssで.text-active{display: block}を指定する。
+そして
+２．マウスが乗った時に説明文にtext-activeクラスをつけ、
+３．マウスがはずれたときにtext-activeクラスを外す(説明文を非表示にする)ようにする。
+addClassメソッドを用いると、指定した要素にクラスを追加することができる。
+このサンプルでは、text-contentsクラスのついた要素に、text-activeというクラスを追加する。
+反対に、removeClassメソッドを用いると、指定した要素から指定したクラスを取り除くことができる。
+このサンプルでは、text-contentsクラスのついた要素から、text-activeというクラスを取り除いている。

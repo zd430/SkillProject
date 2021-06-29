@@ -1,0 +1,85 @@
+/* 画面幅が小さいときは、フォントサイズを小さくしたほうが読みやすくなるのでスマホ向け・タブレット向けのフォントサイズを調整する：【１０】 */
+/* スマートフォン向けのレイアウトにて、ヘッダーメニューの表示を切り替えるため記述していくもの：【１２】 */
+
+/* タブレット向けレイアウト */
+
+/* 【１０】タブレット向けのレイアウトにおいて、
+・top-wrapperクラス内の<h1>タグのfont-sizeを32pxにする。
+・headingクラス内の<h2>タグのfont-sizeを20pxにする。 */
+
+/* タブレット表示 (1000pxより画面幅が小さい) 用のメディアクエリを作成 */
+@media all and (max-width: 1000px) {
+  /* lessonクラスのwidthを50%に指定して、タブレットの画面幅では２段で表示するようにする。 */
+    .lesson {
+      width: 50%;
+      margin-bottom: 50px;
+    }
+  /* 【８】タプレット画面サイズ以下（スマホ画面サイズでも）でフッターが中央寄せに変更されるように設定。 */
+    footer {
+      text-align: center;
+    }
+  
+    .top-wrapper h1 {
+      font-size: 32px;
+    }
+  
+    .heading h2 {
+      font-size: 20px;
+    }
+  }
+  
+  /* スマホ向けレイアウト */
+
+  /* 【９】スマートフォン環境でもボタンをタップしやすいように、ボタンの幅を画面いっぱいに広げる。ボタン間のmarginも調整する。
+  【１０】スマートフォン向けのフォントサイズを調整する。
+  スマートフォン向けのレイアウトにおいて、
+  ・top-wrapperクラス内の<h1>タグのfont-sizeを24pxにする。
+  ・top-wrapperクラス内の<p>タグのfont-sizeを14pxにする。 */
+  
+  /* 【１２】stylesheet.cssの設定（display: none;）によりデフォルトではメニューアイコンは表示されなくなった。
+  スマートフォンでの閲覧時にのみ、ヘッダーメニューをアイコン表示に切り替える。 */
+
+  /* 【１２】スマートフォン向けレイアウトにおいて、
+  ・header-rightクラスのdisplayを none とする。
+  ・menu-iconクラスのdisplayを blockとする。 */
+  
+  /* 【８】スマートフォン表示 (670pxより画面幅が小さい) 用のメディアクエリを作成 */
+  @media all and (max-width: 670px) {
+    /* 【８】lesson要素のwidthを100%にして縦並びになるように変更する。 */
+    .lesson {
+      width: 100%;
+    }
+  
+    /* 【９】.btnのwidthを100%に指定する */
+    .btn {
+      width: 100%;
+    }
+  
+    /* 【９】.facebookにmargin-bottom: 10px;を追加する */
+    .facebook {
+      margin-bottom: 10px;
+    }
+    
+    /* 【９】text-alignを用いて、中身を左寄せに */
+    .top-wrapper {
+      text-align: left;
+    }
+    
+    /* 【１２】header-rightクラスのdisplayをnoneに指定する */
+    .header-right {
+      display: none;
+    }
+    
+    /* 【１２】menu-iconクラスのdisplayをblockに指定する  */
+    .menu-icon {
+      display: block;
+    }
+    
+    .top-wrapper h1 {
+      font-size: 24px;
+    }
+  
+    .top-wrapper p {
+      font-size: 14px;
+    }
+  }

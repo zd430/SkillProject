@@ -1,0 +1,246 @@
+/* ヘッダーが常に上部に固定されるようにする：【中・１８】 */
+/* レッスン一覧部分の高さを固定せず、コンテンツの高さに合わせるようにする（背景色が途中で切れてしまうという問題が生じるから。親の高さより子の高さの方が大きくなると途中で背景色がはみ出す（floatの特性に注意）。これは最初にlesson-wrapper要素の高さが580pxに固定されたため。高さがコンテンツの中身によって変わるように、この指定を消す。lesson-wrapperクラスのheightの指定を削除し、子要素がfloatであっても、親要素が高さを持つようにする。）：【７】 */
+/* 画面幅が大きい時にもレイアウトが整うようにする：【１１】 */
+/* スマートフォン向けのレイアウトにて、ヘッダーメニューの表示を切り替えるため記述していくもの：【１２】 */
+
+/* 【４】通用ではwidthが25%で指定してから、左右のpaddingを追加すると要素の幅の合計が100%を超えてしまい、レイアウトが崩れる（要素が下に回り込む）。このようなレイアウト崩れは、box-sizing: border-box;を用いることで防ぐことができる。すべての要素に対して、box-sizingが border-boxとなるようにCSSを指定 */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  /* 【７】index.htmlのコメントを参照 */
+  .clear {
+    clear: left;
+  }
+  
+  /* 【１１】画面幅が大きい時にもレイアウトが整うようにする。
+  containerクラスで、max-widthを1170pxに指定する */
+  .container {
+    /* 画面幅の最大MAXを指定 */
+    max-width: 1170px;
+    /* 画面幅によって全体のwidthが変わるように、width: 100%;に指定する。 */
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+  
+  .top-wrapper {
+    padding: 180px 0 100px 0;
+    background-image: url(https://prog-8.com/images/html/advanced/top.png);
+    background-size: cover;
+    color: white;
+    text-align: center;
+  }
+  
+  .top-wrapper h1 {
+    opacity: 0.7;
+    font-size: 45px;
+    letter-spacing: 5px;
+  }
+  
+  .top-wrapper p {
+    opacity: 0.7;
+  }
+  
+  .btn-wrapper {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .btn-wrapper p {
+    margin: 10px 0;
+  }
+  
+  .signup {
+    background-color: #239b76;
+  }
+  
+  .facebook {
+    background-color: #3b5998;
+    margin-right: 10px;
+  }
+  
+  .twitter {
+    background-color: #55acee;
+  }
+  
+  .btn {
+    padding: 8px 24px;
+    color: white;
+    display: inline-block;
+    opacity: 0.8;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .btn:hover {
+    opacity: 1;
+  }
+  
+  .fa {
+    margin-right: 5px;
+  }
+  
+  header {
+    height: 65px;
+    width: 100%;
+    /* 【中・８】要素を透明にするにはopacityを用いたが、opacityには要素の中身全てを透明にするという性質がある。背景色のみを透明にするには、rgbaというものを使う必要がある。（例えば、opacityだとロゴ文字も透明になってしまう） */
+    background-color: rgba(34, 49, 52, 0.9);
+    /* 【中・１８】ヘッダーを常に上部に固定するために、
+    ・positionをfixed
+    ・topからの距離を0に指定する。
+     */
+    position :fixed;
+    top: 0;
+    /* 【中・１８】ヘッダーが他の要素と重なった時、ヘッダーが下に隠れてしまう問題を解決するため、z-indexを10に指定する */
+    z-index: 10;
+  }
+  
+  .logo {
+    width: 124px;
+    margin-top: 20px;
+  }
+  
+  .header-left {
+    float: left;
+  }
+  
+  /* 【中・１０】line-heightを用いて、「ログイン」というテキストが縦の中央に配置されるようにする。
+  header-rightの中の<a>タグの・line-heightを65px・左右のpaddingを25px・文字の色をwhiteに指定する。（line-heightプロパティは本来行間を調整するためのプロパティだが、要素の縦方向の中央に文字を配置するのにも使える。line-heightプロパティの「高さの中心」に文字が配置されるため、要素の高さとline-heightプロパティを同じ値にすると、文字がちょうど中央に配置されるようになる。）
+  これでカーソルを合わせると、「ログイン」の文字上しかクリックできないので、<a>タグをブロック要素にして範囲を親要素一杯に広げることで、ボックス全体をクリックできるようにする。 */
+  .header-right {
+    float: right;
+    margin-right: -25px;
+  }
+  
+  .header-right a {
+    line-height: 65px;
+    padding: 0 25px;
+    color: white;
+    display: block;
+    float: left;
+    /* 【中・１０】カーソルを乗せた時に、アニメーション付きで見た目が変化するようにする。・allで全てのプロパティを対象・変化時間が0.5秒間を指定する。a:hoverと組み合わせて使用する。 */
+    transition: all 0.5s;
+  }
+  
+  /* 【中・１０】上記のtransitionで下記の記述内容で変化する */
+  .header-right a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* 【１２】menu-icon用のCSSを記述 */
+  .menu-icon {
+    color: white;
+    float: right;
+    font-size: 25px;
+    padding: 21px 0;
+    /* 【１２】デフォルトでは、メニューアイコンを非表示にする。 */
+    /* 【１２】displayをnoneに指定する */
+    display: none;
+  }
+  /* 【１２】---↑ここまでmenu-icon--- */
+  
+  .lesson-wrapper {
+    padding-bottom: 80px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #f7f7f7;
+    /* 【中・１３】画像やテキストが中央に配置されるようにする */
+    text-align: center;
+  }
+  
+  .heading {
+    padding-top: 80px;
+    padding-bottom: 50px;
+    color: #5f5d60;
+  }
+  
+  /* 【中・１１】<h2>タグが使用されているので、自動的に太文字で表示される。これを通常の太さで表示させる */
+  .heading h2 {
+    font-weight: normal;
+  }
+  
+  /* 【１２】それぞれのレッスンが、25%ずつの幅になるようにする。
+  lessonクラスを
+  ・左にfloatさせ、
+  ・widthを25%
+  に指定する。（ボックスのwidthやheightをpxではなく%で指定すると、親要素に対してどのくらいの幅や高さを持つか指定することができる） */
+  .lesson {
+    float: left;
+    width: 25%;
+  }
+  
+  /* 【中・１３】「Ruby」などのタイトル言語名がそれぞれの画像と重なって表示できるように lesson-iconのpositionをrelativeに指定。
+  親要素であるlesson-iconにposition: relative;を指定したので、その子要素にabsoluteを指定すると、lesson-iconを基準とした位置を指定することができる */
+  .lesson-icon {
+    position: relative;
+  }
+  
+  .lesson-icon p {
+    position: absolute;
+    top: 44%;
+    width: 100%;
+    color: white;
+  }
+  
+  .text-contents {
+    width: 80%;
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #b3aeb5;
+  }
+  
+  /* 【中・１１】<h3>タグが使用されているので、自動的に太文字で表示される。これを通常の太さで表示させる */
+  .heading h3 {
+    font-weight: normal;
+  }
+  
+  .message-wrapper {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 80px;
+    text-align: center;
+  }
+  
+  .message {
+    padding: 15px 40px;
+    background-color: #5dca88;
+    /* 【中・１５】cursorプロパティを用いることでマウスのカーソルが要素に乗ったときのカーソルの形を変える */
+    cursor: pointer;
+    /* 【中・１５】ボタンを立体的に見せるために影をつける */
+    box-shadow: 0 7px #1a7940;
+  }
+  
+  /* 【中・１６】ボタンをクリックしたらへこんで見えるようにする
+  １．クリックしたときにボタンの影が消えるようにするため、疑似クラスactiveにてmessageがクリックされているときのbox-shadowをnoneにする。
+  ２．ボタンをクリックしたときにボタンの位置を影の分だけ下に下げることによって、ボタンがへこんだように見せるため、
+  ・positionをrelative（position: relative;をtopやleftと併用すると、その要素を本来の位置からずらせる。）
+  ・topを7px
+  に指定する  */
+  .message:active {
+    position: relative;
+    top: 7px;
+    box-shadow: none;
+  }
+  
+  footer img {
+    width: 125px;
+  }
+  
+  footer p {
+    color: #b3aeb5;
+    font-size: 12px;
+  }
+  
+  footer {
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }

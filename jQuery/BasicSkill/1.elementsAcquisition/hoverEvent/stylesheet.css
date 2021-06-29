@@ -1,0 +1,4 @@
+/* 「.language-text」をcssのdisplayプロパティを用いて、非表示にする */
+.language-text {
+    display: none;
+  }
